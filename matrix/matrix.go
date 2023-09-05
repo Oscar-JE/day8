@@ -46,3 +46,12 @@ func (this *Matrix) Get(row int, col int) (int, error) {
 	}
 	return 0, errors.New("Get of coordinate outside matrix")
 }
+
+func (this *Matrix) AppendRow(row []int) error {
+	if len(row) == this.nrCols {
+		this.values = append(this.values, row...)
+		this.nrRows++
+		return nil
+	}
+	return errors.New("appenden row length does not match column length")
+}

@@ -33,3 +33,9 @@ func TestGetError(t *testing.T) {
 		t.Errorf("no error raised when accesing an empty matrix")
 	}
 }
+
+func TestAppend(t *testing.T) {
+	var m Matrix = Init(1, 2)
+	m.AppendRow([]int{1, 2})
+
+}
