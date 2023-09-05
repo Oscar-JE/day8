@@ -37,5 +37,11 @@ func TestGetError(t *testing.T) {
 func TestAppend(t *testing.T) {
 	var m Matrix = Init(1, 2)
 	m.AppendRow([]int{1, 2})
-
+	if m.nrRows != 2 && m.nrCols != 2 {
+		t.Errorf("wrong dimension after append")
+	}
+	el, _ := m.Get(1, 1)
+	if el != 2 {
+		t.Errorf("Value error after append")
+	}
 }
