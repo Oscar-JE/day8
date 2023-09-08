@@ -2,6 +2,7 @@ package matrix
 
 import (
 	"errors"
+	"strconv"
 )
 
 type Matrix struct {
@@ -69,5 +70,12 @@ func (m *Matrix) AppendRow(row []int) error {
 }
 
 func (m Matrix) String() string {
-	string 
+	var representation string = ""
+	for index, element := range m.values {
+		representation = representation + strconv.Itoa(element)
+		if index%m.nrCols == 0 {
+			representation = representation + "\n"
+		}
+	}
+	return representation
 }
