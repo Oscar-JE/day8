@@ -20,38 +20,54 @@ func Init(nrRows int, nrCols int) Matrix {
 	return Matrix{nrRows: nrRows, nrCols: nrCols, values: values}
 }
 
-func (this *Matrix) index(row int, col int) int {
-	return row*this.nrCols + col
+func InitFromBox(numberBox [][]int) Matrix {
+	nrCols := len(numberBox[0][:])
+	nrLines := len(numberBox)
+	m := Init(nrLines, nrCols)
+	for i, line := range numberBox {
+		for j, el := range line {
+			m.Set(i, j, el)
+		}
+	}
+	return m
 }
 
-func (this *Matrix) within(row int, col int) bool {
-	var inRows bool = 0 <= row && row < this.nrRows
-	var inCols bool = 0 <= col && col < this.nrCols
+func (m *Matrix) index(row int, col int) int {
+	return row*m.nrCols + col
+}
+
+func (m *Matrix) within(row int, col int) bool {
+	var inRows bool = 0 <= row && row < m.nrRows
+	var inCols bool = 0 <= col && col < m.nrCols
 	return inRows && inCols
 }
 
-func (this *Matrix) Set(row int, col int, v int) error {
-	if this.within(row, col) {
-		index := this.index(row, col)
-		this.values[index] = v
+func (m *Matrix) Set(row int, col int, v int) error {
+	if m.within(row, col) {
+		index := m.index(row, col)
+		m.values[index] = v
 		return nil
 	}
 	return errors.New("Set of coordinate outside matrix")
 }
 
-func (this *Matrix) Get(row int, col int) (int, error) {
-	if this.within(row, col) {
-		index := this.index(row, col)
-		return this.values[index], nil
+func (m *Matrix) Get(row int, col int) (int, error) {
+	if m.within(row, col) {
+		index := m.index(row, col)
+		return m.values[index], nil
 	}
 	return 0, errors.New("Get of coordinate outside matrix")
 }
 
-func (this *Matrix) AppendRow(row []int) error {
-	if len(row) == this.nrCols {
-		this.values = append(this.values, row...)
-		this.nrRows++
+func (m *Matrix) AppendRow(row []int) error {
+	if len(row) == m.nrCols {
+		m.values = append(m.values, row...)
+		m.nrRows++
 		return nil
 	}
 	return errors.New("appenden row length does not match column length")
+}
+
+func (m Matrix) String() string {
+	string 
 }

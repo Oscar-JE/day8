@@ -45,3 +45,18 @@ func TestAppend(t *testing.T) {
 		t.Errorf("Value error after append")
 	}
 }
+
+func TestInitFromBox(t *testing.T) {
+	var m [][]int = [][]int{[]int{1, 2}, []int{3, 4}, []int{5, 6}}
+	matrix := InitFromBox(m)
+	if matrix.nrRows != 3 {
+		t.Errorf("Wrong numbers of rows, was: %d ,should be: %d", matrix.nrRows, 3)
+	}
+	if matrix.nrCols != 2 {
+		t.Errorf("wront numbers of cols, was: %d ,should be: %d", matrix.nrCols, 2)
+	}
+	value, err := matrix.Get(2, 1)
+	if value != 6 && err != nil {
+		t.Errorf("Wrong value at (2 ,1), was: %d ,should be: %d", value, 6)
+	}
+}
