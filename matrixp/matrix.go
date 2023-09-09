@@ -1,4 +1,4 @@
-package matrix
+package matrixp
 
 import (
 	"errors"
@@ -73,9 +73,30 @@ func (m Matrix) String() string {
 	var representation string = ""
 	for index, element := range m.values {
 		representation = representation + strconv.Itoa(element)
-		if index%m.nrCols == 0 {
+		if (index+1)%m.nrCols == 0 {
 			representation = representation + "\n"
 		}
 	}
 	return representation
+}
+
+func (m Matrix) Inbounds(position Vector2d) bool {
+	return 0 <= position.x && position.x < m.nrRows &&
+		0 <= position.y && position.y < m.nrCols
+}
+
+func (m Matrix) GetNrRows() int {
+	return m.nrRows
+}
+
+func (m Matrix) GetNrCols() int {
+	return m.nrCols
+}
+
+func (m Matrix) SumElements() int {
+	sum := 0
+	for _, el := range m.values {
+		sum += el
+	}
+	return sum
 }

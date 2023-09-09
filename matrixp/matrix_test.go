@@ -1,4 +1,4 @@
-package matrix
+package matrixp
 
 import (
 	"testing"
@@ -47,7 +47,7 @@ func TestAppend(t *testing.T) {
 }
 
 func TestInitFromBox(t *testing.T) {
-	var m [][]int = [][]int{[]int{1, 2}, []int{3, 4}, []int{5, 6}}
+	var m [][]int = [][]int{{1, 2}, {3, 4}, {5, 6}}
 	matrix := InitFromBox(m)
 	if matrix.nrRows != 3 {
 		t.Errorf("Wrong numbers of rows, was: %d ,should be: %d", matrix.nrRows, 3)

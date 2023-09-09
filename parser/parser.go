@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"strings"
 )
 
 func ParsePositiveNumbers(fileName string) [][]int {
@@ -13,10 +12,12 @@ func ParsePositiveNumbers(fileName string) [][]int {
 	file_scanner := bufio.NewScanner(readFile)
 	m := [][]int{}
 	for file_scanner.Scan() {
-		var line string = file_scanner.Text()
-		splitted := strings.Split(line, " ")
-		lineInt := convertToIntArr(splitted)
-		m = append(m, lineInt)
+		var inputLine string = file_scanner.Text()
+		var line []int = []int{}
+		for _, char := range inputLine {
+			line = append(line, int(char)-48)
+		}
+		m = append(m, line)
 	}
 	return m
 }
