@@ -33,3 +33,11 @@ func TestViewScore(t *testing.T) {
 		t.Errorf("wrong score : was %d should be %d", res, 4)
 	}
 }
+
+func TestMaximumViewScore(t *testing.T) {
+	m := initMatrix("input_short.txt")
+	res := MaximumViewScore(&m)
+	if res != 8 {
+		t.Errorf("Wrong score is %d should be %d", res, 8)
+	}
+}

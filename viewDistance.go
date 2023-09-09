@@ -29,3 +29,25 @@ func ViewScore(row int, col int, matrix *matrixp.Matrix) int {
 	return ViewDistance(up) * ViewDistance(right) *
 		ViewDistance(down) * ViewDistance(left)
 }
+
+func MaximumViewScore(matrix *matrixp.Matrix) int {
+	row := 0
+	maximum := -1
+	for row < matrix.GetNrRows() {
+		col := 0
+		for col < matrix.GetNrCols() {
+			score := ViewScore(row, col, matrix)
+			maximum = max(maximum, score)
+			col++
+		}
+		row++
+	}
+	return maximum
+}
+
+func max(a int, b int) int {
+	if a < b {
+		return b
+	}
+	return a
+}

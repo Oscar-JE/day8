@@ -7,7 +7,9 @@ import (
 )
 
 func main() {
-	fmt.Println(calcSeenTrees("input.txt"))
+	var matrix matrixp.Matrix = initMatrix("input.txt")
+	res := MaximumViewScore(&matrix)
+	fmt.Println(res)
 }
 
 func initMatrix(fileName string) matrixp.Matrix {
